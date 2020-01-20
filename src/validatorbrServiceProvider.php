@@ -28,7 +28,7 @@ class validatorbrServiceProvider extends ServiceProvider
         {
             $messages += $this->getMessages();
             
-            return new Validator($translator, $data, $rules, $messages, $customAttributes);
+            return new validatorbr($translator, $data, $rules, $messages, $customAttributes);
         });
     }
 

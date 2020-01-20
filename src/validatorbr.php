@@ -2,6 +2,8 @@
 
 namespace bjmoreira\validatorbr;
 
+use Illuminate\Validation\Validator as BaseValidator;
+
 class validatorbr extends BaseValidator
 {
     
