@@ -9,7 +9,7 @@
             "homepage": "http://www.bmsoftware.com.br"
         }
     ],
-    "homepage": "https://github.com/bjomoreira/validatorbr",
+    "homepage": "https://github.com/bjmoreira/validatorbr",
     "keywords": ["Laravel", "validatorbr"],
     "require": {
         "illuminate/support": "~5|~6"
