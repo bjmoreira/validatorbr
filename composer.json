@@ -1,5 +1,5 @@
 {
-    "name": "bjomoreira/validatorbr",
+    "name": "bjmoreira/validatorbr",
     "description": "validação de campos utilizados no Brasil",
     "license": "MIT",
     "authors": [
@@ -33,10 +33,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "bjomoreira\\validatorbr\\validatorbrServiceProvider"
+                "bjmoreira\\validatorbr\\validatorbrServiceProvider"
             ],
             "aliases": {
-                "validatorbr": "bjomoreira\\validatorbr\\Facades\\validatorbr"
+                "validatorbr": "bjmoreira\\validatorbr\\Facades\\validatorbr"
             }
         }
     }
