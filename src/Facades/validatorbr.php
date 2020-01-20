@@ -1,6 +1,6 @@
 <?php
 
-namespace bjomoreira\validatorbr\Facades;
+namespace bjmoreira\validatorbr\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
