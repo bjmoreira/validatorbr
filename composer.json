@@ -36,10 +36,7 @@
         "laravel": {
             "providers": [
                 "bjmoreira\\validatorbr\\validatorbrServiceProvider"
-            ],
-            "aliases": {
-                "validatorbr": "bjmoreira\\validatorbr\\Facades\\validatorbr"
-            }
+            ]
         }
     }
 }
