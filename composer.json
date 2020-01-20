@@ -24,19 +24,22 @@
     },
     "autoload": {
         "psr-4": {
-            "bjomoreira\\validatorbr\\": "src/"
+            "bjmoreira\\validatorbr\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "bjomoreira\\validatorbr\\Tests\\": "tests"
+            "bjmoreira\\validatorbr\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "bjmoreira\\validatorbr\\validatorbrServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "validatorbr": "bjmoreira\\validatorbr\\Facades\\validatorbr"
+            }
         }
     }
 }
