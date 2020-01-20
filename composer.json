@@ -1,12 +1,12 @@
 {
     "name": "bjomoreira/validatorbr",
-    "description": ":package_description",
-    "license": "license",
+    "description": "validação de campos utilizados no Brasil",
+    "license": "MIT",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "Bruno Moreira",
+            "email": "bbjomoreira@gmail.com",
+            "homepage": "http://www.bmsoftware.com.br"
         }
     ],
     "homepage": "https://github.com/bjomoreira/validatorbr",
