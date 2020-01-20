@@ -11,6 +11,8 @@
     ],
     "homepage": "https://github.com/bjmoreira/validatorbr",
     "keywords": ["Laravel", "validatorbr"],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "illuminate/support": "~5|~6"
     },
