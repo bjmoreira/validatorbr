@@ -2,7 +2,7 @@
 
 namespace bjmoreira\validatorbr;
 
-class validatorbr
+class validatorbr extends BaseValidator
 {
     
      /**
@@ -74,6 +74,17 @@ class validatorbr
     }
 
     /**
+     * Valida o formato do cpf ou cnpj
+     * @param string $attribute
+     * @param string $value
+     * @return boolean
+     */
+    protected function validateFormatoCpfCnpj($attribute, $value)
+    {
+        return $this->validateFormatoCpf($attribute, $value) || $this->validateFormatoCnpj($attribute, $value);
+    }
+
+    /**
     * Valida se o CPF é válido
     * @param string $attribute
     * @param string $value
@@ -122,7 +133,6 @@ class validatorbr
         } 
 
         // Remove sequências repetidas como "111111111111"
-        // https://github.com/LaravelLegends/pt-br-validator/issues/4
 
         elseif (preg_match("/^{$c[0]}{14}$/", $c) > 0) {
 
