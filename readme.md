@@ -15,7 +15,7 @@ cd /etc/www/projeto
 E então execute:
 
 ```
-composer require laravellegends/pt-br-validator:6.*
+composer require bjmoreira/validatorbr
 ```
 
 Agora, para utilizar a validação, basta fazer o procedimento padrão do `Laravel`.
