@@ -36,7 +36,9 @@ A diferença é que será possível usar os seguintes métodos de validação:
 
 * **`formato_cpf`** - Valida se o campo tem uma máscara de CPF correta (**`999.999.999-99`**).
 
-* **`formato_cep`** - Valida se o campo tem uma máscara de correta (**`99999-999`** ou **`99.999-999`**).
+* **`formato_cpf`** - Valida se o campo tem uma máscara de CPF correta (**`999.999.999-99`**).
+
+* **`formato_cpf_cnpj`** - Valida se o campo tem uma máscara de CPF ou CNPJ correta (**`999.999.999-99`** ou **`999.999.999-99`**).
 
 * **`telefone`** - Valida se o campo tem umas máscara de telefone (**`9999-9999`**).
 
@@ -90,13 +92,13 @@ Route::get('testando', function (Request $request) {
 
 ### Customizando as mensagens
 
-Todas as validações citadas acima já contam mensagens padrões de validação, porém, é possível alterar isto usando o terceiro parâmetro de `Validator::make`. Este parâmetro deve ser um array onde os índices sejam os nomes das validações e os valores devem ser as respectivas mensagens.
+Todas as validações citadas acima já contam mensagens padrões de validação, porém, é possível alterar isto usando o terceiro parâmetro de `validatorbr::make`. Este parâmetro deve ser um array onde os índices sejam os nomes das validações e os valores devem ser as respectivas mensagens.
 
 Por exemplo:
 
 
 ```php
-Validator::make($valor, $regras, ['celular_com_ddd' => 'O campo :attribute não é um celular'])
+validatorbr::make($valor, $regras, ['celular_com_ddd' => 'O campo :attribute não é um celular'])
 ```
 
 Ou através do método `messages` do seu Request criado pelo comando `php artisan make:request`.
