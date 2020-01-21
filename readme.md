@@ -1,57 +1,111 @@
-# validatorbr
+# validatorbr - Validações em Português
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+Esta é uma biblioteca com algumas validações brasileiras.
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+[![Build Status](https://travis-ci.org/LaravelLegends/pt-br-validator.svg?branch=master)](https://travis-ci.org/LaravelLegends/pt-br-validator)
 
-## Installation
+## Instalação
 
-Via Composer
+Navegue até a pasta do seu projeto, por exemplo:
 
-``` bash
-$ composer require bjmoreira/validatorbr
+```
+cd /etc/www/projeto
 ```
 
-## Usage
+E então execute:
 
-## Change log
-
-Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
+```
+composer require laravellegends/pt-br-validator:6.*
 ```
 
-## Contributing
+Agora, para utilizar a validação, basta fazer o procedimento padrão do `Laravel`.
 
-Please see [contributing.md](contributing.md) for details and a todolist.
+A diferença é que será possível usar os seguintes métodos de validação:
 
-## Security
+* **`celular`** - Valida se o campo está no formato (**`99999-9999`** ou **`9999-9999`**)
 
-If you discover any security related issues, please email author email instead of using the issue tracker.
+*  **`celular_com_ddd`** - Valida se o campo está no formato (**`(99)99999-9999`** ou **`(99)9999-9999`** ou **`(99) 99999-9999`** ou **`(99) 9999-9999`**)
 
-## Credits
+* **`cnpj`** - Valida se o campo é um CNPJ válido. É possível gerar um CNPJ válido para seus testes utilizando o site [geradorcnpj.com](http://www.geradorcnpj.com/)
 
-- [author name][link-author]
-- [All Contributors][link-contributors]
+* **`cpf`** - Valida se o campo é um CPF válido. É possível gerar um CPF válido para seus testes utilizando o site [geradordecpf.org](http://geradordecpf.org) 
 
-## License
+* **`data`** - Valida se o campo é uma data no formato `DD/MM/YYYY`<sup>*</sup>. Por exemplo: `31/12/1969`.
 
-license. Please see the [license file](license.md) for more information.
+* **`formato_cnpj`** - Valida se o campo tem uma máscara de CNPJ correta (**`99.999.999/9999-99`**).
 
-[ico-version]: https://img.shields.io/packagist/v/bjomoreira/validatorbr.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/bjomoreira/validatorbr.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/bjomoreira/validatorbr/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
+* **`formato_cpf`** - Valida se o campo tem uma máscara de CPF correta (**`999.999.999-99`**).
 
-[link-packagist]: https://packagist.org/packages/bjomoreira/validatorbr
-[link-downloads]: https://packagist.org/packages/bjomoreira/validatorbr
-[link-travis]: https://travis-ci.org/bjomoreira/validatorbr
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/bjomoreira
-[link-contributors]: ../../contributors
+* **`formato_cep`** - Valida se o campo tem uma máscara de correta (**`99999-999`** ou **`99.999-999`**).
+
+* **`telefone`** - Valida se o campo tem umas máscara de telefone (**`9999-9999`**).
+
+* **`telefone_com_ddd`** - Valida se o campo tem umas máscara de telefone com DDD (**`(99)9999-9999`** ou **`(99) 9999-9999`**).
+
+* **`formato_placa_de_veiculo`** - Valida se o campo tem o formato válido de uma placa de veículo.
+
+### Testando
+
+Com isso, é possível fazer um teste simples
+
+
+```php
+
+$validator = \Validator::make(
+    ['telefone' => '(77)9999-3333'],
+    ['telefone' => 'required|telefone_com_ddd']
+);
+
+dd($validator->fails());
+
+```
+
+Você pode utilizá-lo também com a instância de `Illuminate\Http\Request`, através do método `validate`.
+
+Veja:
+
+```php
+
+use Illuminate\Http\Request;
+
+// URL: /testando?telefone=3455-1222
+
+Route::get('testando', function (Request $request) {
+
+    try{
+
+        $dados = $request->validate([
+            'telefone' => 'required|telefone',
+            // outras validações aqui
+        ]);
+
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        dd($e->errors());
+    }
+
+});
+
+```
+
+
+### Customizando as mensagens
+
+Todas as validações citadas acima já contam mensagens padrões de validação, porém, é possível alterar isto usando o terceiro parâmetro de `Validator::make`. Este parâmetro deve ser um array onde os índices sejam os nomes das validações e os valores devem ser as respectivas mensagens.
+
+Por exemplo:
+
+
+```php
+Validator::make($valor, $regras, ['celular_com_ddd' => 'O campo :attribute não é um celular'])
+```
+
+Ou através do método `messages` do seu Request criado pelo comando `php artisan make:request`.
+
+```php
+public function messages() {
+
+    return [
+        'campo.telefone' => 'Telefone não válido!'
+    ];
+}
+```
